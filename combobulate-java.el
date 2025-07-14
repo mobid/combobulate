@@ -40,9 +40,9 @@
 (defun combobulate-java--get-function-name (node)
   "Extract function nane from NODE."
   (concat "Method "
-	  (car (combobulate-query-node-text
-		'((method_declaration) (_) (_) (_) @name)
-		node t))))
+          (car (combobulate-query-node-text
+                '((method_declaration) (_) (_) (_) @name)
+                node t))))
 
 (defun combobulate-java-pretty-print (node default-name)
   "Pretty printer for JS and JSX NODEs.
@@ -58,53 +58,53 @@ If node is not method, return DEFAULT-NAME"
 
       (envelope-procedure-shorthand-alist
        '((expressions
-	  . ((:activation-nodes
-	      ((:nodes ((rule "primary_expression") (rule "expression")))))))
+          . ((:activation-nodes
+              ((:nodes ((rule "primary_expression") (rule "expression")))))))
          (wrap-expressions
-	  . ((:activation-nodes
-	      ((:nodes ((rule "primary_expression") (rule "expression")))))))
+          . ((:activation-nodes
+              ((:nodes ((rule "primary_expression") (rule "expression")))))))
          (general-statement
-	  . ((:activation-nodes ((:nodes (rule "statement") :has-parent (irule "statement"))))))))
+          . ((:activation-nodes ((:nodes (rule "statement") :has-parent (irule "statement"))))))))
 
       (envelope-list
        `((:description
-	  "((..) (...))"
-	  :key "c"
-	  :name "cast"
-	  :mark-node t
-	  :shorthand wrap-expressions
-	  :template ("((" (p type "Type") ") (" r "))"))
+          "((..) (...))"
+          :key "c"
+          :name "cast"
+          :mark-node t
+          :shorthand wrap-expressions
+          :template ("((" (p type "Type") ") (" r "))"))
          (:description
-	  "if (...) { ... }"
-	  :key "i"
-	  :name "if"
-	  :mark-node t
-	  :shorthand general-statement
-	  :template ("if (" (p cond "Condition") ") {" @
-		     n> r> n>
-		     "}"))
+          "if (...) { ... }"
+          :key "i"
+          :name "if"
+          :mark-node t
+          :shorthand general-statement
+          :template ("if (" (p cond "Condition") ") {" @
+                     n> r> n>
+                     "}"))
          (:description
-	  "try { ... } catch (...) { ... }"
-	  :key "t"
-	  :name "try"
-	  :mark-node t
-	  :shorthand general-statement
-	  :template ("try {"
-		     n> r> n>
-		     "} catch (" (p RuntimeException "Exception") " ex) {"
-		     @ n>
-		     n> "}"))
+          "try { ... } catch (...) { ... }"
+          :key "t"
+          :name "try"
+          :mark-node t
+          :shorthand general-statement
+          :template ("try {"
+                     n> r> n>
+                     "} catch (" (p RuntimeException "Exception") " ex) {"
+                     @ n>
+                     n> "}"))
          (:description
-	  "try { ... } catch (...) { ... }"
-	  :key "f"
-	  :name "finally"
-	  :mark-node t
-	  :shorthand general-statement
-	  :template ("try {"
-		     n> r> n>
-		     "} finally {"
-		     @ n>
-		     n> "}"))))
+          "try { ... } catch (...) { ... }"
+          :key "f"
+          :name "finally"
+          :mark-node t
+          :shorthand general-statement
+          :template ("try {"
+                     n> r> n>
+                     "} finally {"
+                     @ n>
+                     n> "}"))))
 
       (pretty-print-node-name-function #'combobulate-java-pretty-print)
       ;; (highlight-queries-default)
@@ -112,59 +112,59 @@ If node is not method, return DEFAULT-NAME"
 
       (procedures-sexp
        '((:activation-nodes ((:nodes ("type_arguments"
-				      "generic_type"
-				      "object_creation_expression"
-				      (rule "statement")
-				      "method_invocation"
-				      "lambda_expression"
-				      "method_declaration"
-				      ))))))
+                                      "generic_type"
+                                      "object_creation_expression"
+                                      (rule "statement")
+                                      "method_invocation"
+                                      "lambda_expression"
+                                      "method_declaration"
+                                      ))))))
 
       (procedures-defun
        '((:activation-nodes ((:nodes ("lambda_expression" "method_declaration" "class_declaration"))))))
 
       (procedures-sibling
        `((:activation-nodes
-	  ;; Arrays, method call arguments, ...
-	  ((:nodes
-	    ((rule "expression")
-	     ("argument_list" ",")) ;; ??
-	    :has-parent ("arguments"
-		         "argument_list"
-		         "array_initializer")))
-	  :selector (:match-children t))
+          ;; Arrays, method call arguments, ...
+          ((:nodes
+            ((rule "expression")
+             ("argument_list" ",")) ;; ??
+            :has-parent ("arguments"
+                         "argument_list"
+                         "array_initializer")))
+          :selector (:match-children t))
 
          (:activation-nodes
-	  ;; Method arguments
-	  ((:nodes
-	    ((rule "formal_parameters"))
-	    :has-parent ("formal_parameters")))
-	  :selector (:match-children t))
+          ;; Method arguments
+          ((:nodes
+            ((rule "formal_parameters"))
+            :has-parent ("formal_parameters")))
+          :selector (:match-children t))
 
          (:activation-nodes
-	  ;; Block expressions:
-	  ((:nodes ((rule "statement"))
-		   :has-parent ("block")))
-	  :selector (:match-children (:discard-rules ("line_comment" "block_comment"))))
+          ;; Block expressions:
+          ((:nodes ((rule "statement"))
+                   :has-parent ("block")))
+          :selector (:match-children (:discard-rules ("line_comment" "block_comment"))))
 
          (:activation-nodes
-	  ;; Jump through the comments.
-	  ((:nodes ("line_comment"
-		    "block_comment")
-		   :has-parent ("block")))
-	  :selector (:match-children (:match-rules ("line_comment" "block_comment"))))
+          ;; Jump through the comments.
+          ((:nodes ("line_comment"
+                    "block_comment")
+                   :has-parent ("block")))
+          :selector (:match-children (:match-rules ("line_comment" "block_comment"))))
 
          (:activation-nodes
-	  ;; Class first level statements:
-	  ((:nodes ("class_declaration"
-		    "field_declaration"
-		    "method_declaration"
-		    "constant_declaration"
-		    "annotation")
-		   :has-parent ("class_body"
-			        "interface_body"
-			        "modifiers")))
-	  :selector (:match-children (:discard-rules ("line_comment" "block_comment"))))))
+          ;; Class first level statements:
+          ((:nodes ("class_declaration"
+                    "field_declaration"
+                    "method_declaration"
+                    "constant_declaration"
+                    "annotation")
+                   :has-parent ("class_body"
+                                "interface_body"
+                                "modifiers")))
+          :selector (:match-children (:discard-rules ("line_comment" "block_comment"))))))
 
       (display-ignored-node-types)
       (procedures-hierarchy
