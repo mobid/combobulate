@@ -164,7 +164,15 @@ If node is not method, return DEFAULT-NAME"
 
       (display-ignored-node-types)
       (procedures-hierarchy
-       '(( :activation-nodes ((:nodes "class_declaration" :position at))
+       '(( :activation-nodes ((:nodes "program" :position at))
+           :selector (:choose node
+                              :match-children (:match-rules ("class_declaration"
+                                                             "enum_declaration"
+                                                             "interface_declaration"
+                                                             "module_declaration"
+                                                             "record_declaration"))))
+
+         ( :activation-nodes ((:nodes "class_declaration" :position at))
            :selector (:choose node
                               :match-query
                               (:query (class_declaration (class_body (method_declaration @match))) :engine combobulate)))
