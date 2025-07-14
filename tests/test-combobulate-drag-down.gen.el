@@ -4,6 +4,63 @@
 
 (require 'combobulate-test-prelude)
 
+(ert-deftest combobulate-test-java-combobulate-drag-down--arguments-1 ()
+ "Test `combobulate' with `fixtures/sibling/arguments.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/arguments.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-drag-down)
+	       (combobulate-test-go-to-marker 1)
+	       (combobulate-drag-down)
+	       (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/arguments.java[@1~after].java")))
+
+
+(ert-deftest combobulate-test-java-combobulate-drag-down--arguments-2 ()
+ "Test `combobulate' with `fixtures/sibling/arguments.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/arguments.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-drag-down)
+	       (combobulate-test-go-to-marker 2)
+	       (combobulate-drag-down)
+	       (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/arguments.java[@2~after].java")))
+
+
+(ert-deftest combobulate-test-java-combobulate-drag-down--arguments-3 ()
+ "Test `combobulate' with `fixtures/sibling/arguments.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/arguments.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-drag-down)
+	       (combobulate-test-go-to-marker 3)
+	       (combobulate-drag-down)
+	       (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/arguments.java[@3~after].java")))
+
+
+(ert-deftest combobulate-test-java-combobulate-drag-down--arguments-4 ()
+ "Test `combobulate' with `fixtures/sibling/arguments.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/arguments.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-drag-down)
+	       (combobulate-test-go-to-marker 4)
+	       (combobulate-drag-down)
+	       (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/arguments.java[@4~after].java")))
+
+
+(ert-deftest combobulate-test-java-combobulate-drag-down--arguments-5 ()
+ "Test `combobulate' with `fixtures/sibling/arguments.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/arguments.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-drag-down)
+	       (should-error
+		(progn
+		  (combobulate-test-go-to-marker 5)
+		  (combobulate-drag-down)
+		  (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/arguments.java[@5~after].java")))))
+
+
 (ert-deftest combobulate-test-html-combobulate-drag-down--attributes-1 ()
  "Test `combobulate' with `fixtures/sibling/attributes.html' in `html-ts-mode' mode."
 	     (combobulate-test
@@ -793,52 +850,6 @@
 		  (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/elements.html[@7~after].html")))))
 
 
-(ert-deftest combobulate-test-java-combobulate-drag-down--example-1 ()
- "Test `combobulate' with `fixtures/sibling/example.java' in `java-ts-mode' mode."
-	     (combobulate-test
-		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/example.java")
-	       :tags
-	       '(combobulate java java-ts-mode combobulate-drag-down)
-	       (combobulate-test-go-to-marker 1)
-	       (combobulate-drag-down)
-	       (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/example.java[@1~after].java")))
-
-
-(ert-deftest combobulate-test-java-combobulate-drag-down--example-2 ()
- "Test `combobulate' with `fixtures/sibling/example.java' in `java-ts-mode' mode."
-	     (combobulate-test
-		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/example.java")
-	       :tags
-	       '(combobulate java java-ts-mode combobulate-drag-down)
-	       (combobulate-test-go-to-marker 2)
-	       (combobulate-drag-down)
-	       (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/example.java[@2~after].java")))
-
-
-(ert-deftest combobulate-test-java-combobulate-drag-down--example-3 ()
- "Test `combobulate' with `fixtures/sibling/example.java' in `java-ts-mode' mode."
-	     (combobulate-test
-		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/example.java")
-	       :tags
-	       '(combobulate java java-ts-mode combobulate-drag-down)
-	       (combobulate-test-go-to-marker 3)
-	       (combobulate-drag-down)
-	       (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/example.java[@3~after].java")))
-
-
-(ert-deftest combobulate-test-java-combobulate-drag-down--example-4 ()
- "Test `combobulate' with `fixtures/sibling/example.java' in `java-ts-mode' mode."
-	     (combobulate-test
-		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/example.java")
-	       :tags
-	       '(combobulate java java-ts-mode combobulate-drag-down)
-	       (should-error
-		(progn
-		  (combobulate-test-go-to-marker 4)
-		  (combobulate-drag-down)
-		  (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/example.java[@4~after].java")))))
-
-
 (ert-deftest combobulate-test-go-combobulate-drag-down--expr-switch-1 ()
  "Test `combobulate' with `fixtures/sibling/expr-switch.go' in `go-ts-mode' mode."
 	     (combobulate-test
@@ -1069,6 +1080,118 @@
 		  (combobulate-test-go-to-marker 2)
 		  (combobulate-drag-down)
 		  (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/map.go[@2~after].go")))))
+
+
+(ert-deftest combobulate-test-java-combobulate-drag-down--methods-1 ()
+ "Test `combobulate' with `fixtures/sibling/methods.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/methods.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-drag-down)
+	       (combobulate-test-go-to-marker 1)
+	       (combobulate-drag-down)
+	       (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/methods.java[@1~after].java")))
+
+
+(ert-deftest combobulate-test-java-combobulate-drag-down--methods-2 ()
+ "Test `combobulate' with `fixtures/sibling/methods.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/methods.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-drag-down)
+	       (combobulate-test-go-to-marker 2)
+	       (combobulate-drag-down)
+	       (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/methods.java[@2~after].java")))
+
+
+(ert-deftest combobulate-test-java-combobulate-drag-down--methods-3 ()
+ "Test `combobulate' with `fixtures/sibling/methods.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/methods.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-drag-down)
+	       (combobulate-test-go-to-marker 3)
+	       (combobulate-drag-down)
+	       (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/methods.java[@3~after].java")))
+
+
+(ert-deftest combobulate-test-java-combobulate-drag-down--methods-4 ()
+ "Test `combobulate' with `fixtures/sibling/methods.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/methods.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-drag-down)
+	       (combobulate-test-go-to-marker 4)
+	       (combobulate-drag-down)
+	       (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/methods.java[@4~after].java")))
+
+
+(ert-deftest combobulate-test-java-combobulate-drag-down--methods-5 ()
+ "Test `combobulate' with `fixtures/sibling/methods.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/methods.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-drag-down)
+	       (combobulate-test-go-to-marker 5)
+	       (combobulate-drag-down)
+	       (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/methods.java[@5~after].java")))
+
+
+(ert-deftest combobulate-test-java-combobulate-drag-down--methods-6 ()
+ "Test `combobulate' with `fixtures/sibling/methods.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/methods.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-drag-down)
+	       (combobulate-test-go-to-marker 6)
+	       (combobulate-drag-down)
+	       (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/methods.java[@6~after].java")))
+
+
+(ert-deftest combobulate-test-java-combobulate-drag-down--methods-7 ()
+ "Test `combobulate' with `fixtures/sibling/methods.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/methods.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-drag-down)
+	       (combobulate-test-go-to-marker 7)
+	       (combobulate-drag-down)
+	       (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/methods.java[@7~after].java")))
+
+
+(ert-deftest combobulate-test-java-combobulate-drag-down--methods-8 ()
+ "Test `combobulate' with `fixtures/sibling/methods.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/methods.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-drag-down)
+	       (combobulate-test-go-to-marker 8)
+	       (combobulate-drag-down)
+	       (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/methods.java[@8~after].java")))
+
+
+(ert-deftest combobulate-test-java-combobulate-drag-down--methods-9 ()
+ "Test `combobulate' with `fixtures/sibling/methods.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/methods.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-drag-down)
+	       (combobulate-test-go-to-marker 9)
+	       (combobulate-drag-down)
+	       (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/methods.java[@9~after].java")))
+
+
+(ert-deftest combobulate-test-java-combobulate-drag-down--methods-10 ()
+ "Test `combobulate' with `fixtures/sibling/methods.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/methods.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-drag-down)
+	       (should-error
+		(progn
+		  (combobulate-test-go-to-marker 10)
+		  (combobulate-drag-down)
+		  (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/methods.java[@10~after].java")))))
 
 
 (ert-deftest combobulate-test-python-combobulate-drag-down--module-statements-1 ()
@@ -1788,6 +1911,52 @@
 		  (combobulate-test-go-to-marker 5)
 		  (combobulate-drag-down)
 		  (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/python-tuple.py[@5~after].py")))))
+
+
+(ert-deftest combobulate-test-java-combobulate-drag-down--statements-1 ()
+ "Test `combobulate' with `fixtures/sibling/statements.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/statements.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-drag-down)
+	       (combobulate-test-go-to-marker 1)
+	       (combobulate-drag-down)
+	       (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/statements.java[@1~after].java")))
+
+
+(ert-deftest combobulate-test-java-combobulate-drag-down--statements-2 ()
+ "Test `combobulate' with `fixtures/sibling/statements.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/statements.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-drag-down)
+	       (combobulate-test-go-to-marker 2)
+	       (combobulate-drag-down)
+	       (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/statements.java[@2~after].java")))
+
+
+(ert-deftest combobulate-test-java-combobulate-drag-down--statements-3 ()
+ "Test `combobulate' with `fixtures/sibling/statements.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/statements.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-drag-down)
+	       (combobulate-test-go-to-marker 3)
+	       (combobulate-drag-down)
+	       (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/statements.java[@3~after].java")))
+
+
+(ert-deftest combobulate-test-java-combobulate-drag-down--statements-4 ()
+ "Test `combobulate' with `fixtures/sibling/statements.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/statements.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-drag-down)
+	       (should-error
+		(progn
+		  (combobulate-test-go-to-marker 4)
+		  (combobulate-drag-down)
+		  (combobulate-compare-action-with-fixture-delta "./fixture-deltas/combobulate-drag-down/statements.java[@4~after].java")))))
 
 
 (ert-deftest combobulate-test-go-combobulate-drag-down--switch-1 ()

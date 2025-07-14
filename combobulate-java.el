@@ -156,11 +156,7 @@ If node is not method, return DEFAULT-NAME"
 
          (:activation-nodes
           ;; Class first level statements:
-          ((:nodes ("class_declaration"
-                    "field_declaration"
-                    "method_declaration"
-                    "constant_declaration"
-                    "annotation")
+          ((:nodes ((rule "class_body"))
                    :has-parent ("class_body"
                                 "interface_body"
                                 "modifiers")))
@@ -172,16 +168,16 @@ If node is not method, return DEFAULT-NAME"
            :selector (:choose node
                               :match-query
                               (:query (class_declaration (class_body (method_declaration @match))) :engine combobulate)))
-         
+
          ( :activation-nodes ((:nodes ("block") :position at))
            :selector  (:choose node
                                :match-query
                                (:query (block (_ @match)) :engine combobulate)))
-         
+
          ( :activation-nodes ((:nodes ("marker_annotation" "annotation") :position at))
            :selector (:choose node
                               :match-siblings (:match-rules ("marker_annotation" "annotation"))))
-         
+
          ( :activation-nodes ((:nodes ((irule "block"))
                                       :position at))
            :selector (:choose node
@@ -193,11 +189,11 @@ If node is not method, return DEFAULT-NAME"
                               :match-query
                               (:query (if_statement consequence: (_ @match)) :engine combobulate)))
 
-         
+
 
          ( :activation-nodes ((:nodes ("lambda_expression"
                                        "method_declaration")
-                                      :position in))    
+                                      :position in))
            :selector  (:choose node
                                :match-query
                                (:query (_ body: (_ @match)) :engine combobulate)))
@@ -221,7 +217,6 @@ If node is not method, return DEFAULT-NAME"
 
 (defun combobulate-java-setup (_)
   "Do nothing."
-  ;; (setq-local combobulate-navigate-down-into-lists nil)
   nil)
 
 (provide 'combobulate-java)

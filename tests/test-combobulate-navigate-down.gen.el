@@ -138,10 +138,30 @@
 	       (combobulate-test-assert-at-marker 3)))
 
 
-(ert-deftest combobulate-test-java-combobulate-navigate-down--example-7 ()
- "Test `combobulate' with `fixtures/down/example.java' in `java-ts-mode' mode."
+(ert-deftest combobulate-test-python-combobulate-navigate-down--function-5 ()
+ "Test `combobulate' with `fixtures/down/function.py' in `python-ts-mode' mode."
 	     (combobulate-test
-		 (:language java :mode java-ts-mode :fixture "fixtures/down/example.java")
+		 (:language python :mode python-ts-mode :fixture "fixtures/down/function.py")
+	       :tags
+	       '(combobulate python python-ts-mode combobulate-navigate-down)
+	       (combobulate-test-go-to-marker 1)
+	       (combobulate-navigate-down)
+	       (combobulate-test-assert-at-marker 2)
+	       (combobulate-test-go-to-marker 2)
+	       (combobulate-navigate-down)
+	       (combobulate-test-assert-at-marker 3)
+	       (combobulate-test-go-to-marker 3)
+	       (combobulate-navigate-down)
+	       (combobulate-test-assert-at-marker 4)
+	       (combobulate-test-go-to-marker 4)
+	       (combobulate-navigate-down)
+	       (combobulate-test-assert-at-marker 5)))
+
+
+(ert-deftest combobulate-test-java-combobulate-navigate-down--if-statement-9 ()
+ "Test `combobulate' with `fixtures/down/if-statement.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/down/if-statement.java")
 	       :tags
 	       '(combobulate java java-ts-mode combobulate-navigate-down)
 	       (combobulate-test-go-to-marker 1)
@@ -161,27 +181,13 @@
 	       (combobulate-test-assert-at-marker 6)
 	       (combobulate-test-go-to-marker 6)
 	       (combobulate-navigate-down)
-	       (combobulate-test-assert-at-marker 7)))
-
-
-(ert-deftest combobulate-test-python-combobulate-navigate-down--function-5 ()
- "Test `combobulate' with `fixtures/down/function.py' in `python-ts-mode' mode."
-	     (combobulate-test
-		 (:language python :mode python-ts-mode :fixture "fixtures/down/function.py")
-	       :tags
-	       '(combobulate python python-ts-mode combobulate-navigate-down)
-	       (combobulate-test-go-to-marker 1)
+	       (combobulate-test-assert-at-marker 7)
+	       (combobulate-test-go-to-marker 7)
 	       (combobulate-navigate-down)
-	       (combobulate-test-assert-at-marker 2)
-	       (combobulate-test-go-to-marker 2)
+	       (combobulate-test-assert-at-marker 8)
+	       (combobulate-test-go-to-marker 8)
 	       (combobulate-navigate-down)
-	       (combobulate-test-assert-at-marker 3)
-	       (combobulate-test-go-to-marker 3)
-	       (combobulate-navigate-down)
-	       (combobulate-test-assert-at-marker 4)
-	       (combobulate-test-go-to-marker 4)
-	       (combobulate-navigate-down)
-	       (combobulate-test-assert-at-marker 5)))
+	       (combobulate-test-assert-at-marker 9)))
 
 
 (ert-deftest combobulate-test-tsx-combobulate-navigate-down--if-statements-10 ()

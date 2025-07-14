@@ -4,6 +4,26 @@
 
 (require 'combobulate-test-prelude)
 
+(ert-deftest combobulate-test-java-combobulate-navigate-next--arguments-5 ()
+ "Test `combobulate' with `fixtures/sibling/arguments.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/arguments.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-navigate-next)
+	       (combobulate-test-go-to-marker 1)
+	       (combobulate-navigate-next)
+	       (combobulate-test-assert-at-marker 2)
+	       (combobulate-test-go-to-marker 2)
+	       (combobulate-navigate-next)
+	       (combobulate-test-assert-at-marker 3)
+	       (combobulate-test-go-to-marker 3)
+	       (combobulate-navigate-next)
+	       (combobulate-test-assert-at-marker 4)
+	       (combobulate-test-go-to-marker 4)
+	       (combobulate-navigate-next)
+	       (combobulate-test-assert-at-marker 5)))
+
+
 (ert-deftest combobulate-test-html-combobulate-navigate-next--attributes-3 ()
  "Test `combobulate' with `fixtures/sibling/attributes.html' in `html-ts-mode' mode."
 	     (combobulate-test
@@ -286,23 +306,6 @@
 	       (combobulate-test-assert-at-marker 7)))
 
 
-(ert-deftest combobulate-test-java-combobulate-navigate-next--example-4 ()
- "Test `combobulate' with `fixtures/sibling/example.java' in `java-ts-mode' mode."
-	     (combobulate-test
-		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/example.java")
-	       :tags
-	       '(combobulate java java-ts-mode combobulate-navigate-next)
-	       (combobulate-test-go-to-marker 1)
-	       (combobulate-navigate-next)
-	       (combobulate-test-assert-at-marker 2)
-	       (combobulate-test-go-to-marker 2)
-	       (combobulate-navigate-next)
-	       (combobulate-test-assert-at-marker 3)
-	       (combobulate-test-go-to-marker 3)
-	       (combobulate-navigate-next)
-	       (combobulate-test-assert-at-marker 4)))
-
-
 (ert-deftest combobulate-test-go-combobulate-navigate-next--expr-switch-3 ()
  "Test `combobulate' with `fixtures/sibling/expr-switch.go' in `go-ts-mode' mode."
 	     (combobulate-test
@@ -396,6 +399,41 @@
 	       (combobulate-test-go-to-marker 1)
 	       (combobulate-navigate-next)
 	       (combobulate-test-assert-at-marker 2)))
+
+
+(ert-deftest combobulate-test-java-combobulate-navigate-next--methods-10 ()
+ "Test `combobulate' with `fixtures/sibling/methods.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/methods.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-navigate-next)
+	       (combobulate-test-go-to-marker 1)
+	       (combobulate-navigate-next)
+	       (combobulate-test-assert-at-marker 2)
+	       (combobulate-test-go-to-marker 2)
+	       (combobulate-navigate-next)
+	       (combobulate-test-assert-at-marker 3)
+	       (combobulate-test-go-to-marker 3)
+	       (combobulate-navigate-next)
+	       (combobulate-test-assert-at-marker 4)
+	       (combobulate-test-go-to-marker 4)
+	       (combobulate-navigate-next)
+	       (combobulate-test-assert-at-marker 5)
+	       (combobulate-test-go-to-marker 5)
+	       (combobulate-navigate-next)
+	       (combobulate-test-assert-at-marker 6)
+	       (combobulate-test-go-to-marker 6)
+	       (combobulate-navigate-next)
+	       (combobulate-test-assert-at-marker 7)
+	       (combobulate-test-go-to-marker 7)
+	       (combobulate-navigate-next)
+	       (combobulate-test-assert-at-marker 8)
+	       (combobulate-test-go-to-marker 8)
+	       (combobulate-navigate-next)
+	       (combobulate-test-assert-at-marker 9)
+	       (combobulate-test-go-to-marker 9)
+	       (combobulate-navigate-next)
+	       (combobulate-test-assert-at-marker 10)))
 
 
 (ert-deftest combobulate-test-python-combobulate-navigate-next--module-statements-8 ()
@@ -645,6 +683,23 @@
 	       (combobulate-test-go-to-marker 4)
 	       (combobulate-navigate-next)
 	       (combobulate-test-assert-at-marker 5)))
+
+
+(ert-deftest combobulate-test-java-combobulate-navigate-next--statements-4 ()
+ "Test `combobulate' with `fixtures/sibling/statements.java' in `java-ts-mode' mode."
+	     (combobulate-test
+		 (:language java :mode java-ts-mode :fixture "fixtures/sibling/statements.java")
+	       :tags
+	       '(combobulate java java-ts-mode combobulate-navigate-next)
+	       (combobulate-test-go-to-marker 1)
+	       (combobulate-navigate-next)
+	       (combobulate-test-assert-at-marker 2)
+	       (combobulate-test-go-to-marker 2)
+	       (combobulate-navigate-next)
+	       (combobulate-test-assert-at-marker 3)
+	       (combobulate-test-go-to-marker 3)
+	       (combobulate-navigate-next)
+	       (combobulate-test-assert-at-marker 4)))
 
 
 (ert-deftest combobulate-test-go-combobulate-navigate-next--switch-3 ()
