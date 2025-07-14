@@ -135,6 +135,13 @@ If node is not method, return DEFAULT-NAME"
 	  :selector (:match-children t))
 
          (:activation-nodes
+	  ;; Method arguments
+	  ((:nodes
+	    ((rule "formal_parameters"))
+	    :has-parent ("formal_parameters")))
+	  :selector (:match-children t))
+
+         (:activation-nodes
 	  ;; Block expressions:
 	  ((:nodes ((rule "statement"))
 		   :has-parent ("block")))
@@ -165,25 +172,36 @@ If node is not method, return DEFAULT-NAME"
            :selector (:choose node
                               :match-query
                               (:query (class_declaration (class_body (method_declaration @match))) :engine combobulate)))
+         
+         ( :activation-nodes ((:nodes ("block") :position at))
+           :selector  (:choose node
+                               :match-query
+                               (:query (block (_ @match)) :engine combobulate)))
+         
          ( :activation-nodes ((:nodes ("marker_annotation" "annotation") :position at))
            :selector (:choose node
-                              :match-siblings
-                              (:match-rules ("marker_annotation" "annotation"))))
-         ( :activation-nodes ((:nodes ((rule "statement"))
+                              :match-siblings (:match-rules ("marker_annotation" "annotation"))))
+         
+         ( :activation-nodes ((:nodes ((irule "block"))
+                                      :position at))
+           :selector (:choose node
+                              :match-children (:match-rules ("block"))))
+
+         ( :activation-nodes ((:nodes ("if_statement")
                                       :position at))
            :selector (:choose node
                               :match-query
-                              (:query (_ (block (_ @match))) :engine combobulate)))
-         ( :activation-nodes ((:nodes ("lambda_expression") :position in))
-           :selector
-           (:choose node
-                    :match-query
-                    (:query (lambda_expression (block (_ @match))) :engine combobulate)))
-         ( :activation-nodes ((:nodes ("method_declaration")
-                                      :position in))
-           :selector (:choose node
-                              :match-query
-                              (:query (method_declaration (block (_ @match))) :engine combobulate)))
+                              (:query (if_statement consequence: (_ @match)) :engine combobulate)))
+
+         
+
+         ( :activation-nodes ((:nodes ("lambda_expression"
+                                       "method_declaration")
+                                      :position in))    
+           :selector  (:choose node
+                               :match-query
+                               (:query (_ body: (_ @match)) :engine combobulate)))
+
          ( :activation-nodes ((:nodes ((all)) :has-parent ((all))))
            :selector (:choose node
                               :match-children (:discard-rules ("block" "parenthesized_expression"))))
@@ -203,6 +221,7 @@ If node is not method, return DEFAULT-NAME"
 
 (defun combobulate-java-setup (_)
   "Do nothing."
+  ;; (setq-local combobulate-navigate-down-into-lists nil)
   nil)
 
 (provide 'combobulate-java)
