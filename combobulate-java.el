@@ -197,7 +197,12 @@ If node is not method, return DEFAULT-NAME"
                               :match-query
                               (:query (if_statement consequence: (_ @match)) :engine combobulate)))
 
-
+         ( :activation-nodes ((:nodes ("enhanced_for_statement"
+                                       "for_statement")
+                                      :position at))
+           :selector (:choose node
+                              :match-query
+                              (:query (_ body: (_ @match)) :engine combobulate)))
 
          ( :activation-nodes ((:nodes ("lambda_expression"
                                        "method_declaration")
