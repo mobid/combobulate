@@ -73,7 +73,7 @@ If node is not method, return DEFAULT-NAME"
           :name "cast"
           :mark-node t
           :shorthand wrap-expressions
-          :template ("((" (p type "Type") ") (" r "))"))
+          :template ("((" @ ") (" r "))"))
          (:description
           "if (...) { ... }"
           :key "i"
@@ -91,11 +91,11 @@ If node is not method, return DEFAULT-NAME"
           :shorthand general-statement
           :template ("try {"
                      n> r> n>
-                     "} catch (" (p RuntimeException "Exception") " ex) {"
+                     "} catch (Exception ex) {"
                      @ n>
                      n> "}"))
          (:description
-          "try { ... } catch (...) { ... }"
+          "try { ... } finally { ... }"
           :key "f"
           :name "finally"
           :mark-node t
