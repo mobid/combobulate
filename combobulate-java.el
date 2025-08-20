@@ -177,10 +177,10 @@ If node is not method, return DEFAULT-NAME"
                               :match-query
                               (:query (class_declaration (class_body (method_declaration @match))) :engine combobulate)))
 
-         ( :activation-nodes ((:nodes ("block") :position at))
-           :selector  (:choose node
-                               :match-query
-                               (:query (block (_ @match)) :engine combobulate)))
+         (:activation-nodes
+          ((:nodes ((rule "block")) :position at))
+          :selector (:choose node
+                             :match-children (:discard-rules (rule "comment"))))
 
          ( :activation-nodes ((:nodes ("marker_annotation" "annotation") :position at))
            :selector (:choose node
@@ -233,5 +233,4 @@ If node is not method, return DEFAULT-NAME"
   nil)
 
 (provide 'combobulate-java)
-
 ;;; combobulate-java.el ends here
