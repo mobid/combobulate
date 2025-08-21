@@ -178,18 +178,13 @@ If node is not method, return DEFAULT-NAME"
                               (:query (class_declaration (class_body (method_declaration @match))) :engine combobulate)))
 
          (:activation-nodes
-          ((:nodes ((rule "block")) :position at))
+          ((:nodes ("block") :position at))
           :selector (:choose node
                              :match-children (:discard-rules (rule "comment"))))
 
          ( :activation-nodes ((:nodes ("marker_annotation" "annotation") :position at))
            :selector (:choose node
                               :match-siblings (:match-rules ("marker_annotation" "annotation"))))
-
-         ( :activation-nodes ((:nodes ((irule "block"))
-                                      :position at))
-           :selector (:choose node
-                              :match-children (:match-rules ("block"))))
 
          ( :activation-nodes ((:nodes ("if_statement")
                                       :position at))
@@ -213,8 +208,7 @@ If node is not method, return DEFAULT-NAME"
 
          ( :activation-nodes ((:nodes ((all)) :has-parent ((all))))
            :selector (:choose node
-                              :match-children (:discard-rules ("block" "parenthesized_expression"))))
-         ))
+                              :match-children (:discard-rules ("block" "parenthesized_expression"))))))
       (procedures-logical '((:activation-nodes ((:nodes (all)))))))))
 
 
